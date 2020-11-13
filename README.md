@@ -1,2 +1,1 @@
-### Hexlet tests and linter status:
-![Actions Status](/workflows/hexlet-check/badge.svg)
+![Actions Status](https://github.com/sahaviev/frontend-project-lvl2/workflows/Base%20check/badge.svg)
