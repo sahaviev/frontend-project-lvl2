@@ -1,0 +1,41 @@
+{
+  "name": "@hexlet/code",
+  "version": "0.0.11",
+  "description": "Difference Rail Sakhaviev",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "test": "npx -n --experimental-vm-modules jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahaviev/frontend-project-lvl2.git"
+  },
+  "author": "Rail Sakhaviev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahaviev/frontend-project-lvl2/issues"
+  },
+  "type": "module",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
+  "homepage": "https://github.com/sahaviev/frontend-project-lvl2#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "eslint": "7.9.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.22.0"
+  },
+  "dependencies": {
+    "commander": "6.2.0"
+  }
+}
