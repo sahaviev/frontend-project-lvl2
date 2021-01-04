@@ -8,8 +8,6 @@ const compareStrings = (a, b) => {
   return 0;
 };
 
-const isUndefined = (value) => value === undefined;
-
 const loadJSON = (filename) => {
   const filepath = path.resolve(process.cwd(), filename);
   return JSON.parse(fs.readFileSync(filepath, 'utf8'));
@@ -29,12 +27,15 @@ export const genDiff = (filename1, filename2) => {
       return;
     }
 
-    if (!isUndefined(object1[key]) && isUndefined(object2[key])) {
+    const value1Exist = object1[key] !== undefined;
+    const value2Exist = object2[key] !== undefined;
+
+    if (value1Exist && !value2Exist) {
       result.push(`  - ${key}: ${object1[key]}`);
       return;
     }
 
-    if (!isUndefined(object2[key]) && isUndefined(object1[key])) {
+    if (!value1Exist && value2Exist) {
       result.push(`  + ${key}: ${object2[key]}`);
       return;
     }
