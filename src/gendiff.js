@@ -13,6 +13,22 @@ const loadJSON = (filename) => {
   return JSON.parse(fs.readFileSync(filepath, 'utf8'));
 };
 
+const getDifferenceMessage = (key, value1, value2) => {
+  if (value1 === value2) {
+    return `    ${key}: ${value2}`;
+  }
+
+  if (value1 !== undefined && !(value2 !== undefined)) {
+    return `  - ${key}: ${value1}`;
+  }
+
+  if (!(value1 !== undefined) && value2 !== undefined) {
+    return `  + ${key}: ${value2}`;
+  }
+
+  return `  - ${key}: ${value1}\n  + ${key}: ${value2}`;
+};
+
 export const genDiff = (filename1, filename2) => {
   const object1 = loadJSON(filename1);
   const object2 = loadJSON(filename2);
@@ -22,28 +38,7 @@ export const genDiff = (filename1, filename2) => {
   const result = [];
   result.push('{');
   keys.forEach((key) => {
-    if (object1[key] === object2[key]) {
-      result.push(`    ${key}: ${object2[key]}`);
-      return;
-    }
-
-    const value1Exist = object1[key] !== undefined;
-    const value2Exist = object2[key] !== undefined;
-
-    if (value1Exist && !value2Exist) {
-      result.push(`  - ${key}: ${object1[key]}`);
-      return;
-    }
-
-    if (!value1Exist && value2Exist) {
-      result.push(`  + ${key}: ${object2[key]}`);
-      return;
-    }
-
-    if (object1[key] !== object2[key]) {
-      result.push(`  - ${key}: ${object1[key]}`);
-      result.push(`  + ${key}: ${object2[key]}`);
-    }
+    result.push(getDifferenceMessage(key, object1[key], object2[key]));
   });
   result.push('}');
 
